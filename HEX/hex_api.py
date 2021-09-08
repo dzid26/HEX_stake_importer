@@ -10,7 +10,7 @@ with open('HEX/abi.json') as json_data:
 
 class HEX_contract:
     def __init__(self):
-        self.hex_ = w3.eth.contract(Web3.toChecksumAddress(HEX_CONTRACT_ADDRESS), abi=ABI)
+        self.hex_ = w3.eth.contract(HEX_CONTRACT_ADDRESS, abi=ABI)
         print("ERC20 contract found:" + self.hex_.functions.name().call() + " (" + self.hex_.address + ")")
 
     def get_stake_count(self, walletAddress):
@@ -35,7 +35,7 @@ def main():
         print('Please provide your eth wallet address as argument')
         sys.exit(1)
     else:
-        address = args[0]
+        address = Web3.toChecksumAddress(args[0])
     hex_ = HEX_contract()
 
     stake_count = hex_.get_stake_count(address)

@@ -1,4 +1,4 @@
-# HEX_stake_importer
+# HEX stake importer
 To import staking data in readable format
 
 
