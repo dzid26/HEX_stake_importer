@@ -2,6 +2,11 @@
 To import staking data in readable format
 
 
+install web3:
+```
+pip install -r requirements.txt
+```
+
 You can use virtual pipenv environment, e.g:
 
 Linux:

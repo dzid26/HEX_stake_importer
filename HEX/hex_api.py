@@ -1,7 +1,5 @@
-import sys
 import time
 import json
-from web3.main import Web3
 from web3.auto.infura import w3
 
 
@@ -63,7 +61,7 @@ class HEX_Stake:
         #     uint72            stakeShares     -->  data0 [183:112]
         #     uint16            stakedDays      -->  data0 [199:184]
         #     bool              isAutoStake     -->  data0 [207:200]
-        
+
         self.timestampStart = stakeData0 & (2**40-1)
         self.stakedHearts = (stakeData0 >> 40) & (2**72-1)
         self.stakeShares = (stakeData0 >> 112) & (2**72-1)
@@ -123,7 +121,7 @@ class HEX_Stake:
         
         self.income = self.payout - self.penalty #for tax purposes, income is registered at the stakeEnd only
 
-class HEX_contract:
+class HEX_Contract:
     def __init__(self):
         self.hex_ = w3.eth.contract(HEX_CONTRACT_ADDRESS, abi=ABI)
         print("ERC20 contract found:" + self.hex_.functions.name().call() + " (" + self.hex_.address + ")")
@@ -185,38 +183,3 @@ class HEX_contract:
 
             all_stakes.append(stake)
         return all_stakes
-
-
-
-
-        
-
-def main():
-    """
-    Main function
-    """
-
-    args = sys.argv[1:]
-    if not args:
-        print('Please provide your eth wallet address as argument')
-        sys.exit(1)
-    else:
-        walletAddress = Web3.toChecksumAddress(args[0])
-    hex = HEX_contract()
-    
-    print("Wallet address: " + walletAddress)
-
-    stake_count = hex.read_stake_count(walletAddress)
-    print("Found " + str(stake_count) + " stakes by directly reading contract function...")
-    for index in range(0, stake_count):
-        stake = hex.read_stake_by_index(walletAddress, index)
-    #     print("Stake data: " + str(stake))
-    
-    all_stakes_from_events=hex.find_all_address_stakes(walletAddress)
-    print("\nFound " + str(len(all_stakes_from_events)) + " stakes in contract events:\n")
-    for stake in all_stakes_from_events:
-        print(stake)
-
-
-if __name__ == "__main__":
-    main()
