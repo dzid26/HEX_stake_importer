@@ -11,10 +11,14 @@ DAYS_TO_SECONDS=24*60*60
 SECONDS_TO_DAYS=1/DAYS_TO_SECONDS
 
 HEX_LAUNCH_TIME=1575331200
-HEARTS_TO_HEX = 1e-8
-SHARES_TO_TSHARES = 1e-12
+HEX_TO_HEARTS = 1e8
+TSHARES_TO_SHARES = 1e12
 
+def hearts_to_hex(hearts):
+    return hearts / HEX_TO_HEARTS
 
+def shares_to_tshares(shares):
+    return shares / TSHARES_TO_SHARES
 class HEX_Stake:
     def __init__(self, stakeId):
         self.stakeId = stakeId
@@ -36,11 +40,11 @@ class HEX_Stake:
     def __str__(self):
         return "Stake ID: " + str(self.stakeId) + "\n" + \
             "Stake submitted: " + (time.strftime("%Y-%m-%d %H:%M:%S %Z %z", time.gmtime(self.timestampStart)) if self.timestampStart else "0-0-0 0:0:0") + "\n" + \
-            "Staked Hex: " + str(self.stakedHearts*HEARTS_TO_HEX) + "\n" + \
-            ("Interests HEX: " + str(self.payout*HEARTS_TO_HEX) + "\n" if self.payout else "" ) + \
-            ("Penalty HEX: " + str(self.penalty*HEARTS_TO_HEX) + "\n" if self.penalty else "" ) + \
-            ("Income HEX: " + str(self.income*HEARTS_TO_HEX) + "\n" if self.income else "" ) + \
-            "Staked TShares: " + str(self.stakeShares*SHARES_TO_TSHARES) + "\n" + \
+            "Staked Hex: " + str(hearts_to_hex(self.stakedHearts)) + "\n" + \
+            ("Interests HEX: " + str(hearts_to_hex(self.payout)) + "\n" if self.payout else "" ) + \
+            ("Penalty HEX: " + str(self.penalty/1e8) + "\n" if self.penalty else "" ) + \
+            ("Income HEX: " + str(hearts_to_hex(self.income)) + "\n" if self.income else "" ) + \
+            "Staked TShares: " + str(shares_to_tshares(self.stakeShares)) + "\n" + \
             "Staked Days: " + str(self.stakedDays) + "\n" + \
             "Locked Day: " + str(self.lockedDay) + "\n" + \
             "Unlocked Day: " + str(self.unlockedDay) + "\n" + \
@@ -139,8 +143,8 @@ class HEX_Contract:
         """
         stakeId, stakedHearts, stakeShares, lockedDay, stakedDays, unlockedDay, isAutoStake \
             = self.hex_.functions.stakeLists(walletAddress, index).call()
-        staked_HEX = stakedHearts*HEARTS_TO_HEX
-        stakedTShares = stakeShares*SHARES_TO_TSHARES
+        staked_HEX = hearts_to_hex(stakedHearts)
+        stakedTShares = shares_to_tshares(stakeShares)
         lockedDate = time.gmtime(HEX_LAUNCH_TIME + stakedDays*DAYS_TO_SECONDS)
         
         stake = HEX_Stake(stakeId)
