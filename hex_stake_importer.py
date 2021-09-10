@@ -1,8 +1,10 @@
 import sys
 from web3.main import Web3
 from HEX import HEX_Contract
+from cointracking import CoinTracking_CSV
+from cointracking import add_hex_stake_entries_to_csv
 
-def importer(walletAddress):
+def importer(walletAddress, exchangeName):
     
     hex = HEX_Contract()
     
@@ -20,11 +22,20 @@ def importer(walletAddress):
         print(stake)
 
 
+    ct_csv = CoinTracking_CSV("Cointracking - HEX stakes.csv")
+    for stake in all_stakes_from_events:
+        add_hex_stake_entries_to_csv(ct_csv, stake, exchangeName)
+
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     if not args:
         print('Please provide your eth wallet address as argument')
         sys.exit(1)
+    walletAddress = Web3.toChecksumAddress(args[0])
+    if len(args) > 1:
+        exchangeName = args[1]
     else:
-        walletAddress = Web3.toChecksumAddress(args[0])
-    importer(walletAddress)
+        exchangeName = "HEX Stake"
+    importer(walletAddress, exchangeName)
