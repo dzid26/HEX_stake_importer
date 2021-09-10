@@ -42,7 +42,7 @@ class HEX_Stake:
 
     def __str__(self):
         return "Stake ID: " + str(self.stakeId) + "\n" + \
-            "Stake submitted: " + (time.strftime("%Y-%m-%d %H:%M:%S %Z %z", time.gmtime(self.timestampStart)) if self.timestampStart else "0-0-0 0:0:0") + "\n" + \
+            "Stake submitted: " + (time.strftime("%Y-%m-%d %H:%M:%S %Z %z", time.localtime(self.timestampStart)) if self.timestampStart else "0-0-0 0:0:0") + "\n" + \
             "Staked Hex: " + str(self.hearts_to_hex(self.stakedHearts)) + "\n" + \
             ("Interests HEX: " + str(self.hearts_to_hex(self.payout)) + "\n" if self.payout else "" ) + \
             ("Penalty HEX: " + str(self.penalty/1e8) + "\n" if self.penalty else "" ) + \
@@ -52,7 +52,7 @@ class HEX_Stake:
             "Locked Day: " + str(self.lockedDay) + "\n" + \
             "Unlocked Day: " + str(self.unlockedDay) + "\n" + \
             "Is Auto Stake: " + str(self.isAutoStake) + "\n"  \
-            "Stake withdrew: " + (time.strftime("%Y-%m-%d %H:%M:%S %Z %z", time.gmtime(self.timestampEnd)) if self.timestampEnd else "0-0-0 0:0:0") + "\n"
+            "Stake withdrew: " + (time.strftime("%Y-%m-%d %H:%M:%S %Z %z", time.localtime(self.timestampEnd)) if self.timestampEnd else "0-0-0 0:0:0") + "\n"
 
     
     def processStakeStartData(self, stakeData0):
@@ -148,7 +148,7 @@ class HEX_Contract:
             = self.hex_.functions.stakeLists(walletAddress, index).call()
         staked_HEX = HEX_Stake.hearts_to_hex(stakedHearts)
         stakedTShares = HEX_Stake.shares_to_tshares(stakeShares)
-        lockedDate = time.gmtime(HEX_LAUNCH_TIME + stakedDays*DAYS_TO_SECONDS)
+        lockedDate = time.localtime(HEX_LAUNCH_TIME + stakedDays*DAYS_TO_SECONDS)
         
         stake = HEX_Stake(stakeId)
         stake.stakedHearts = staked_HEX
