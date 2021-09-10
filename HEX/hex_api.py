@@ -1,7 +1,7 @@
 import time
 import json
 from web3.auto.infura import w3
-
+from typing import List
 
 HEX_CONTRACT_ADDRESS = '0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39'
 with open('HEX/abi.json') as json_data:
@@ -162,7 +162,7 @@ class HEX_Contract:
         """
         stakeStartedEventsForAddress=self.hex_.events.StakeStart.createFilter(fromBlock=0, argument_filters={'stakerAddr': address}).get_all_entries()
         
-        all_stakes = []
+        all_stakes = [] # type: List[HEX_Stake]
         for event in stakeStartedEventsForAddress:
             stakeId = event['args']['stakeId']
             stakeData0 = event['args']['data0']
