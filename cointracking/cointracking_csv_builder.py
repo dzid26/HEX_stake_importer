@@ -26,6 +26,15 @@ class _HandlerCSV:
             writer = csv.writer(f, quoting=csv.QUOTE_ALL)
             writer.writerows(data)
 
+    def remove_trailing(self, new_csv_file):
+        """
+        Remove trailing line from csv file
+        """
+        with open(new_csv_file, 'r') as f:
+            lines = f.read()
+        with open(new_csv_file, 'w') as f:
+            f.write(lines[:-1])
+
 class TxType:
     class Trades:
         Trade = "Trade"
@@ -86,6 +95,9 @@ class CoinTracking_CSV(_HandlerCSV):
         self.handler_csv.create_csv(COINTRACKING_CSV_HEADER)
         self.defaultExchange = ""
         self.defaultGroup = ""
+
+    def __del__(self):
+        self.handler_csv.remove_trailing(self.csv_table)
 
 
     @staticmethod
