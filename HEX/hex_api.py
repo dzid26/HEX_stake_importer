@@ -19,8 +19,8 @@ class HEX_Stake:
     def __init__(self, stakeId):
         self.stakeId = stakeId
         self.timestampStart = None  # stakeStart
-        self.timestampUnlock = None # good accounting
-        self.timestampEnd = None    # stakeEnd
+        self.timestampUnlock = None # good accounting - None if stake not yet unlocked
+        self.timestampEnd = None    # stakeEnd - None if stake not yet ended
         self.stakedHearts = None    # common
         self.stakeShares = None     # common
         self.lockedDay = None       # good accounting or stakeEnd
@@ -125,6 +125,8 @@ class HEX_Stake:
 
         if self.prevUnlocked:
             self.unlockedDay = round((self.timestampEnd - HEX_LAUNCH_TIME) * SECONDS_TO_DAYS + .5)+1 #since HEX launch, day 0 is day 1, stake is assumed to start at the end of day
+        else:
+            self.timestampUnlock = self.timestampEnd #populate timestampUnlock with timestampEnd since unlocking is happening at the same time as the stake ends
         
         self.income = self.payout - self.penalty #for tax purposes, income is registered at the stakeEnd only
 
