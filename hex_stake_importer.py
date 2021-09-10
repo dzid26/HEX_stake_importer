@@ -2,15 +2,8 @@ import sys
 from web3.main import Web3
 from HEX import HEX_Contract
 
-
-def importer():
-
-    args = sys.argv[1:]
-    if not args:
-        print('Please provide your eth wallet address as argument')
-        sys.exit(1)
-    else:
-        walletAddress = Web3.toChecksumAddress(args[0])
+def importer(walletAddress):
+    
     hex = HEX_Contract()
     
     print("Wallet address: " + walletAddress)
@@ -28,4 +21,10 @@ def importer():
 
 
 if __name__ == "__main__":
-    importer()
+    args = sys.argv[1:]
+    if not args:
+        print('Please provide your eth wallet address as argument')
+        sys.exit(1)
+    else:
+        walletAddress = Web3.toChecksumAddress(args[0])
+    importer(walletAddress)
