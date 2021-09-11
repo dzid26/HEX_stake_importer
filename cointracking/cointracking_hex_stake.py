@@ -46,5 +46,5 @@ def add_hex_stake_entries_to_csv(ct_csv: CoinTracking_CSV, stake: HEX_Stake, exc
             days_diff = stake.unlockedDay-stake.lockedDay-stake.stakedDays
             ct_csv.add_otherfee_to_csv(toLocalTime(stake.timestampEnd, tz), HEX_Stake.hearts_to_hex(stake.penalty), "HEX", Comment=comment_str + " penalty " + str(abs(days_diff)) + " days " + ("over" if days_diff > 0 else "early"))
     if stake.timestampEnd is not None:    
-        ct_csv.add_withdrawal_to_csv(toLocalTime(stake.timestampEnd, tz), HEX_Stake.hearts_to_hex(stake.stakedHearts), "HEX", Comment=comment_str + " end")
+        ct_csv.add_withdrawal_to_csv(toLocalTime(stake.timestampEnd, tz), HEX_Stake.hearts_to_hex(stake.stakedHearts+stake.payout-stake.penalty), "HEX", Comment=comment_str + " end")
  
