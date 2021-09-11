@@ -43,17 +43,17 @@ It will print out stake data in the terminal and generate a csv file with the fo
 Example output:
 ```
 "Minting","4812.25730085","HEX","","","","","HEX Stake","","Auto-Stake #24342 for 3650 days","2019/12/04 20:06:33"
-"Deposit","534.695","HEX","","","","","HEX Stake","","Stake #24422 for 3650 days","2019/12/04 20:15:28"
-"Staking","0.0","HEX","","","","","HEX Stake","","Stake #24422 payout","2019/12/06 00:13:51"
-"Other Fee","","","248.406298","HEX","","","HEX Stake","","Stake #24422 penalty 3649 days early","2019/12/06 00:13:51"
+"Deposit","534.695","HEX","","","","","HEX Stake","","Stake #24422 for 3650 days","2019/12/04 20:15:29"
+"Staking","0.0","HEX","","","","","HEX Stake","","Stake #24422 payout","2019/12/06 00:13:50"
+"Other Fee","","","248.406298","HEX","","","HEX Stake","","Stake #24422 penalty 3649 days early","2019/12/06 00:13:50"
 "Withdrawal","","","286.288702","HEX","","","HEX Stake","","Stake #24422 end","2019/12/06 00:13:51"
-"Deposit","224257.0","HEX","","","","","HEX Stake","","Stake #29993 for 100 days","2019/12/05 19:55:57"
-"Staking","3313.56975266","HEX","","","","","HEX Stake","","Stake #29993 payout","2020/03/18 13:00:59"
-"Other Fee","","","0.0","HEX","","","HEX Stake","","Stake #29993 penalty 3 days over","2020/03/18 13:00:59"
+"Deposit","224257.0","HEX","","","","","HEX Stake","","Stake #29993 for 100 days","2019/12/05 19:55:58"
+"Staking","3313.56975266","HEX","","","","","HEX Stake","","Stake #29993 payout","2020/03/18 13:00:58"
+"Other Fee","","","0.0","HEX","","","HEX Stake","","Stake #29993 penalty 3 days over","2020/03/18 13:00:58"
 "Withdrawal","","","227570.56975266","HEX","","","HEX Stake","","Stake #29993 end","2020/03/18 13:00:59"
-"Deposit","289960.0","HEX","","","","","HEX Stake","","Stake #33362 for 348 days","2019/12/06 19:03:33"
-"Staking","9135.03805006","HEX","","","","","HEX Stake","","Stake #33362 payout","2020/05/10 18:21:28"
-"Other Fee","","","10321.40662798","HEX","","","HEX Stake","","Stake #33362 penalty 193 days early","2020/05/10 18:21:28"
+"Deposit","289960.0","HEX","","","","","HEX Stake","","Stake #33362 for 348 days","2019/12/06 19:03:34"
+"Staking","9135.03805006","HEX","","","","","HEX Stake","","Stake #33362 payout","2020/05/10 18:21:27"
+"Other Fee","","","10321.40662798","HEX","","","HEX Stake","","Stake #33362 penalty 193 days early","2020/05/10 18:21:27"
 ```
 
 ## Import
