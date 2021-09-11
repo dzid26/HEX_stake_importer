@@ -42,7 +42,7 @@ It will print out stake data in the terminal and generate a csv file with the fo
 
 Example output:
 ```
-"Deposit","4812.25730085","HEX","","","","","HEX Stake","","Stake #24342 for 3650 days","2019/12/04 20:06:33"
+"Minting","4812.25730085","HEX","","","","","HEX Stake","","Auto-Stake #24342 for 3650 days","2019/12/04 20:06:33"
 "Deposit","534.695","HEX","","","","","HEX Stake","","Stake #24422 for 3650 days","2019/12/04 20:15:28"
 "Staking","0.0","HEX","","","","","HEX Stake","","Stake #24422 payout","2019/12/06 00:13:51"
 "Other Fee","","","248.406298","HEX","","","HEX Stake","","Stake #24422 penalty 3649 days early","2019/12/06 00:13:51"

@@ -29,8 +29,10 @@ def add_hex_stake_entries_to_csv(ct_csv: CoinTracking_CSV, stake: HEX_Stake, exc
 
     comment_str = "Stake #" + str(stake.stakeId)
 
-    if stake is not None:
+    if not stake.isAutoStake:
         ct_csv.add_deposit_to_csv(toLocalTime(stake.timestampStart, tz), HEX_Stake.hearts_to_hex(stake.stakedHearts), "HEX", Comment=comment_str + " for " + str(stake.stakedDays) + " days")
+    else:
+        ct_csv.add_minting_to_csv(toLocalTime(stake.timestampStart, tz), HEX_Stake.hearts_to_hex(stake.stakedHearts), "HEX", Comment="Auto-" + comment_str + " for " + str(stake.stakedDays) + " days")
     if stake.timestampUnlock is not None and stake.timestampUnlock is not stake.timestampEnd and IMPORTING_GOOD_ACCOUNTING:
     #good accounting scenario - use unlock timestamp
         ct_csv.add_staking_to_csv(toLocalTime(stake.timestampUnlock, tz), HEX_Stake.hearts_to_hex(stake.payout), "HEX", Comment=comment_str + " payout")      

@@ -157,6 +157,12 @@ class CoinTracking_CSV(_HandlerCSV):
         Add staking entry to csv file
         """
         self.add_type_incoming_to_csv(Date, TxType.Incoming.Staking, Value, Cur, "", "", Exchange, Group, Comment)
+        
+    def add_minting_to_csv(self, Date:time.struct_time, Value, Cur, Exchange="", Group="", Comment=""):
+        """
+        Add minting entry to csv file
+        """
+        self.add_type_incoming_to_csv(Date, TxType.Incoming.Minting, Value, Cur, "", "", Exchange, Group, Comment)
 
     #Simple outgoing
     def add_withdrawal_to_csv(self, Date:time.struct_time, Value, Cur, Fee="", FeeCur="", Exchange="", Group="", Comment=""):
