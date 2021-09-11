@@ -27,9 +27,7 @@ def importer(walletAddress, timezone, exchangeName):
         add_hex_stake_entries_to_csv(ct_csv, stake, exchangeName, "", timezone)
     
 
-
-if __name__ == "__main__":
-    args = sys.argv[1:]
+def main(args):
     if not args:
         print('Please provide your eth wallet address as argument')
         sys.exit(1)
@@ -43,3 +41,7 @@ if __name__ == "__main__":
     else:
         exchangeName = "HEX Stake"
     importer(walletAddress,  timezone, exchangeName)
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    main(args)
