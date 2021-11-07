@@ -1,3 +1,5 @@
+![example workflow](https://github.com/dzid26/HEX_stake_importer/actions/workflows/test.yml/badge.svg)
+
 # HEX stake importer to CoinTracking.info
 To import staking data in readable format and saves as csv that can be imported by cointracking.info. It complements normal Ethereum blockchain import.
 
