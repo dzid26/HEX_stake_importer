@@ -11,7 +11,7 @@ IMPORTING_GOOD_ACCOUNTING = False
 def toLocalTime(timestamp, tz):
     return datetime.datetime.fromtimestamp(timestamp, tz).timetuple()
 
-def add_hex_stake_entries_to_csv(ct_csv: CoinTracking_CSV, stake: HEX_Stake, exchange="Hex Stake", group="", timezone_name=None):
+def add_hex_stake_entries_to_csv(ct_csv: CoinTracking_CSV, stake: HEX_Stake, exchange="ETH Wallet", group="", timezone_name=None):
     """
     Add stake entries to csv file. No tx fees for stake entries. Comments include Stake ID.
     :param ct_csv: CoinTracking_CSV object

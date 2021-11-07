@@ -4,7 +4,7 @@ from HEX import HEX_Contract
 from cointracking import CoinTracking_CSV
 from cointracking import add_hex_stake_entries_to_csv
 
-def importer(walletAddress, timezone, exchangeName):
+def importer(walletAddress, timezone, exchangeName, groupName):
     
     hex = HEX_Contract()
     
@@ -24,7 +24,7 @@ def importer(walletAddress, timezone, exchangeName):
 
     ct_csv = CoinTracking_CSV("Cointracking - HEX stakes.csv")
     for stake in all_stakes_from_events:
-        add_hex_stake_entries_to_csv(ct_csv, stake, exchangeName, "", timezone)
+        add_hex_stake_entries_to_csv(ct_csv, stake, exchangeName, groupName, timezone)
     
 
 def main(args):
@@ -40,7 +40,8 @@ def main(args):
         exchangeName = args[2]
     else:
         exchangeName = "HEX Stake"
-    importer(walletAddress,  timezone, exchangeName)
+        groupName = "HEX csv import"
+    importer(walletAddress,  timezone, exchangeName, groupName)
 
 if __name__ == "__main__":
     args = sys.argv[1:]

@@ -93,7 +93,7 @@ class CoinTracking_CSV(_HandlerCSV):
         self.csv_table = new_csv_file
         self.handler_csv = _HandlerCSV(self.csv_table)
         self.handler_csv.create_csv(COINTRACKING_CSV_HEADER)
-        self.defaultExchange = ""
+        self.defaultExchange = "Other exchange"
         self.defaultGroup = ""
 
     def __del__(self):
