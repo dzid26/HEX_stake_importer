@@ -27,7 +27,7 @@ def add_hex_stake_entries_to_csv(ct_csv: CoinTracking_CSV, stake: HEX_Stake, exc
     else:
         tz = None #local system timezone
 
-    comment_str = "Stake #" + str(stake.stakeId)
+    comment_str = "Stake " + str(stake.stakeId)
 
     ofs = 1 #sec: offset for timestamp to improve cointracking sorting
 
